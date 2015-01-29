@@ -66,7 +66,6 @@ Motion::Project::App.setup do |app|
 end
 ```
 
-
 ## Tasks
 
 To tell motion-maven to download your dependencies, run the following rake
@@ -79,3 +78,9 @@ $ [bundle exec] rake maven:install
 After a `rake:clean:all` you will need to run the install task agin.
 
 That’s all.
+
+
+## Todo
+
+* Improve the pom.xml generated file, if you are a fine Maven connoisseur, feel free to help us.
+* Improve edge cases.
