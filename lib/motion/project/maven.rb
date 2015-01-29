@@ -26,7 +26,7 @@ module Motion::Project
     end
 
     def configure_project
-      @config.vendor_project(:jar => 'vendor/Maven/target/dependencies.jar')
+      @config.vendor_project(:jar => "#{MAVEN_ROOT}/target/dependencies.jar")
     end
 
     def path=(path)
