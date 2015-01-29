@@ -112,6 +112,12 @@ EOS
         artifact: options.fetch(:artifact, name)
       }
     end
+
+    def inspect
+      @dependencies.map do |dependency|
+        "#{dependency[:name]} - #{dependency[:artifact]} (#{dependency[:version]})"
+      end.inspect
+    end
   end
 end
 

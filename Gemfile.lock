@@ -6,11 +6,13 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    bacon (1.2.0)
     rake (10.4.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bacon
   motion-maven!
   rake
