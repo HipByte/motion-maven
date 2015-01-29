@@ -39,12 +39,12 @@ gem 'motion-maven'
 
    ```ruby
    Motion::Project::App.setup do |app|
-     # ...
-     app.maven do
-       dependency 'com.mcxiaoke.volley', :artifact => 'library', :version => '1.0.10'
-       dependency 'commons-cli'
-       dependency 'ehcache', :version => '1.2.3'
-     end
+      # ...
+      app.maven do
+        dependency 'com.mcxiaoke.volley', :artifact => 'library', :version => '1.0.10'
+        dependency 'commons-cli'
+        dependency 'ehcache', :version => '1.2.3'
+      end
    end
    ```
 
