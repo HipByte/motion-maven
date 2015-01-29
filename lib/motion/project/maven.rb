@@ -98,11 +98,20 @@ EOS
 
     def install!(update)
       generate_pom
-      system "#{@maven_path} -f #{pom_path} clean install"
+      system "#{maven_command} -f #{pom_path} clean install"
     end
 
+    # Helpers
     def pom_path
       "#{MAVEN_ROOT}/pom.xml"
+    end
+
+    def maven_command
+      if ENV['MAVEN_DEBUG']
+        "#{@maven_path} -X"
+      else
+        "#{@maven_path}"
+      end
     end
 
     def normalized_dependency(name, options)
