@@ -88,4 +88,4 @@ That’s all.
 
 ## Note
 
-motion-maven does not support android support libraries, RM might support it out of the box in the future: http://hipbyte.myjetbrains.com/youtrack/issue/RM-763
+motion-maven does not support android support libraries, RubyMotion might support it out of the box in the future: http://hipbyte.myjetbrains.com/youtrack/issue/RM-763
