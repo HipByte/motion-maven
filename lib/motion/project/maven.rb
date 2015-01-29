@@ -62,6 +62,17 @@ EOS
   <groupId>#{dependency[:name]}</groupId>
   <artifactId>#{dependency[:artifact]}</artifactId>
   <version>#{dependency[:version]}</version>
+EOS
+
+          if dependency[:scope]
+            xml << "<scope>#{dependency[:scope]}</scope>"
+          end
+
+          if dependency[:type]
+            xml << "<type>#{dependency[:type]}</type>"
+          end
+
+          xml << <<EOS
 </dependency>
 EOS
         end
@@ -123,7 +134,9 @@ EOS
       {
         name: name,
         version: options.fetch(:version, 'LATEST'),
-        artifact: options.fetch(:artifact, name)
+        artifact: options.fetch(:artifact, name),
+        scope: options.fetch(:scope, false),
+        type: options.fetch(:type, false)
       }
     end
 
