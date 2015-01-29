@@ -37,8 +37,8 @@ module Motion::Project
       @maven_path = path
     end
 
-    def dependency(*name_and_version_requirements)
-      @dependencies << name_and_version_requirements
+    def dependency(name, options = {})
+      @dependencies << normalized_dependency(name, options)
     end
 
     def generate_pom
@@ -57,14 +57,11 @@ module Motion::Project
 EOS
 
         @dependencies.each do |dependency|
-          options = dependency[1] || {}
-          version = options.fetch(:version, 'LATEST')
-          artifact = options.fetch(:artifact, dependency[0])
           xml << <<EOS
 <dependency>
-  <groupId>#{dependency[0]}</groupId>
-  <artifactId>#{artifact}</artifactId>
-  <version>#{version}</version>
+  <groupId>#{dependency[:name]}</groupId>
+  <artifactId>#{dependency[:artifact]}</artifactId>
+  <version>#{dependency[:version]}</version>
 </dependency>
 EOS
         end
@@ -106,6 +103,14 @@ EOS
 
     def pom_path
       "#{MAVEN_ROOT}/pom.xml"
+    end
+
+    def normalized_dependency(name, options)
+      {
+        name: name,
+        version: options.fetch(:version, 'LATEST'),
+        artifact: options.fetch(:artifact, name)
+      }
     end
   end
 end
