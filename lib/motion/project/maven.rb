@@ -93,7 +93,7 @@ EOS
           </execution>
         </executions>
         <configuration>
-          <finalName>${artifactId}</finalName>
+          <finalName>${project.artifactId}</finalName>
         </configuration>
       </plugin>
     </plugins>
