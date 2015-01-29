@@ -84,3 +84,8 @@ That’s all.
 
 * Improve the pom.xml generated file, if you are a fine Maven connoisseur, feel free to help us.
 * Improve edge cases.
+
+
+## Note
+
+motion-maven does not support android support libraries, RM might support it out of the box in the future : http://hipbyte.myjetbrains.com/youtrack/issue/RM-763
