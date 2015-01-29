@@ -107,6 +107,11 @@ EOS
     end
 
     def maven_command
+      unless system("command -v #{@maven_path} >/dev/null")
+        $stderr.puts "[!] #{@maven_path} command doesn’t exist. Verify your maven installation."
+        exit 1
+      end
+
       if ENV['MAVEN_DEBUG']
         "#{@maven_path} -X"
       else
