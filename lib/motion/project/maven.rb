@@ -38,7 +38,7 @@ module Motion::Project
     end
 
     def generate_pom
-      File.open("#{MAVEN_ROOT}/pom.xml", 'w') do |io|
+      File.open(pom_path, 'w') do |io|
         xml ||= <<EOS
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -92,12 +92,16 @@ EOS
         io.puts xml
       end
 
-      system "xmllint --output #{MAVEN_ROOT}/pom.xml --format #{MAVEN_ROOT}/pom.xml"
+      system "xmllint --output #{pom_path} --format #{pom_path}"
     end
 
     def install!(update)
       generate_pom
-      system "#{@maven_path} -f #{MAVEN_ROOT}/pom.xml clean install"
+      system "#{@maven_path} -f #{pom_path} clean install"
+    end
+
+    def pom_path
+      "#{MAVEN_ROOT}/pom.xml"
     end
   end
 end
