@@ -48,6 +48,15 @@ gem 'motion-maven'
    end
    ```
 
+   * Other options are : :scope, :type
+
+   * :version will default to : LATEST
+
+   * :artifact will default to dependency name
+
+
+## Configuration
+
 If the `mvn` command is not in your path, you can configure it :
 
 ```ruby
