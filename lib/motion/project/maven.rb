@@ -41,6 +41,12 @@ module Motion::Project
       @dependencies << normalized_dependency(name, options)
     end
 
+    def install!(update)
+      generate_pom
+      system "#{maven_command} -f #{pom_path} clean install"
+    end
+
+    # Helpers
     def generate_pom
       File.open(pom_path, 'w') do |io|
         xml ||= <<EOS
@@ -107,12 +113,6 @@ EOS
       system "xmllint --output #{pom_path} --format #{pom_path}"
     end
 
-    def install!(update)
-      generate_pom
-      system "#{maven_command} -f #{pom_path} clean install"
-    end
-
-    # Helpers
     def pom_path
       "#{MAVEN_ROOT}/pom.xml"
     end
