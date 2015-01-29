@@ -48,6 +48,15 @@ gem 'motion-maven'
    end
    ```
 
+If the `mvn` command is not in your path, you can configure it :
+
+```ruby
+Motion::Project::App.setup do |app|
+  # ...
+  app.maven.path = '/some/path/mvn'
+end
+```
+
 
 ## Tasks
 
