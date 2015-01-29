@@ -76,4 +76,6 @@ task:
 $ [bundle exec] rake maven:install
 ```
 
+After a `rake:clean:all` you will need to run the install task agin.
+
 That’s all.
