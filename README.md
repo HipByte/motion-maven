@@ -12,6 +12,8 @@ You need to have maven installed :
 $ brew install maven
 ```
 
+And the gem installed : 
+
 ```
 $ [sudo] gem install motion-maven
 ```
