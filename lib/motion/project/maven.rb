@@ -39,47 +39,57 @@ module Motion::Project
 
     def generate_pom
       File.open("#{MAVEN_ROOT}/pom.xml", 'w') do |io|
-        io.puts '<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">'
-          io.puts '<modelVersion>4.0.0</modelVersion>'
-          io.puts '<groupId>com.maventest</groupId>'
-          io.puts '<artifactId>dependencies</artifactId>'
-          io.puts '<packaging>jar</packaging>'
-          io.puts '<version>1.0</version>'
-          io.puts '<name>dependencies</name>'
-          io.puts '<url>http://maven.apache.org</url>'
-          io.puts '<dependencies>'
-            @dependencies.map do |dependency|
-              options = dependency[1] || {}
-              version = options.fetch(:version, 'LATEST')
-              artifact = options.fetch(:artifact, dependency[0])
-              io.puts '<dependency>'
-                io.puts "<groupId>#{dependency[0]}</groupId>"
-                io.puts "<artifactId>#{artifact}</artifactId>"
-                io.puts "<version>#{version}</version>"
-              io.puts '</dependency>'
-            end
-          io.puts '</dependencies>'
-          io.puts '<build>'
-            io.puts '<plugins>'
-              io.puts '<plugin>'
-                io.puts '<groupId>org.apache.maven.plugins</groupId>'
-                io.puts '<artifactId>maven-shade-plugin</artifactId>'
-                io.puts '<executions>'
-                  io.puts '<execution>'
-                    io.puts '<phase>package</phase>'
-                    io.puts '<goals>'
-                      io.puts '<goal>shade</goal>'
-                    io.puts '</goals>'
-                  io.puts '</execution>'
-                io.puts '</executions>'
-                io.puts '<configuration>'
-                  io.puts '<finalName>${artifactId}</finalName>'
-                io.puts '</configuration>'
-              io.puts '</plugin>'
-            io.puts '</plugins>'
-          io.puts '</build>'
-        io.puts '</project>'
+        xml ||= <<EOS
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.maventest</groupId>
+  <artifactId>dependencies</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>dependencies</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+EOS
+
+        @dependencies.each do |dependency|
+          options = dependency[1] || {}
+          version = options.fetch(:version, 'LATEST')
+          artifact = options.fetch(:artifact, dependency[0])
+          xml << <<EOS
+<dependency>
+  <groupId>#{dependency[0]}</groupId>
+  <artifactId>#{artifact}</artifactId>
+  <version>#{version}</version>
+</dependency>
+EOS
+        end
+
+        xml << <<EOS
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <finalName>${artifactId}</finalName>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+EOS
+
+        io.puts xml
       end
 
       system "xmllint --output #{MAVEN_ROOT}/pom.xml --format #{MAVEN_ROOT}/pom.xml"
