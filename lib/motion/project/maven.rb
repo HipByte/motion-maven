@@ -2,7 +2,7 @@ unless defined?(Motion::Project::Config)
   raise "This file must be required within a RubyMotion project Rakefile."
 end
 
-unless defined?(Motion::Project::AndroidManifest)
+if Motion::Project::App.template != :android
   raise "This file must be required within a RubyMotion Android project."
 end
 
