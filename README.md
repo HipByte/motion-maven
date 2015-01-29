@@ -6,13 +6,13 @@ motion-maven allows RubyMotion projects to integrate with the
 
 ## Installation
 
-You need to have maven installed : 
+You need to have maven installed: 
 
 ```
 $ brew install maven
 ```
 
-And the gem installed : 
+And the gem installed: 
 
 ```
 $ [sudo] gem install motion-maven
@@ -48,16 +48,16 @@ gem 'motion-maven'
    end
    ```
 
-   * Other options are : :scope, :type
+   * Other options are: :scope, :type
 
-   * :version will default to : LATEST
+   * :version will default to: LATEST
 
    * :artifact will default to dependency name
 
 
 ## Configuration
 
-If the `mvn` command is not in your path, you can configure it :
+If the `mvn` command is not in your path, you can configure it:
 
 ```ruby
 Motion::Project::App.setup do |app|
@@ -88,4 +88,4 @@ That’s all.
 
 ## Note
 
-motion-maven does not support android support libraries, RM might support it out of the box in the future : http://hipbyte.myjetbrains.com/youtrack/issue/RM-763
+motion-maven does not support android support libraries, RM might support it out of the box in the future: http://hipbyte.myjetbrains.com/youtrack/issue/RM-763
