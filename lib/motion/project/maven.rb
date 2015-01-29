@@ -2,6 +2,10 @@ unless defined?(Motion::Project::Config)
   raise "This file must be required within a RubyMotion project Rakefile."
 end
 
+unless defined?(Motion::Project::AndroidManifest)
+  raise "This file must be required within a RubyMotion Android project."
+end
+
 module Motion::Project
   class Config
     variable :maven
