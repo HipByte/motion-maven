@@ -28,7 +28,7 @@ gem 'motion-maven'
 ## Setup
 
 1. Edit the `Rakefile` of your RubyMotion project and add the following require
-   line:
+   lines:
 
    ```ruby
    require 'rubygems'
