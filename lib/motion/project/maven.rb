@@ -6,7 +6,7 @@ module Motion::Project
   class Config
     variable :maven
 
-    def maven(vendor_options = {}, &block)
+    def maven(&block)
       @maven ||= Motion::Project::Maven.new(self)
       if block
         @maven.instance_eval(&block)
