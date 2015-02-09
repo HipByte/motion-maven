@@ -26,6 +26,7 @@ module Motion::Project
       @maven_path = 'mvn'
       @config = config
       @dependencies = []
+      @repositories = []
       configure_project
     end
 
@@ -39,6 +40,10 @@ module Motion::Project
 
     def dependency(name, options = {})
       @dependencies << normalized_dependency(name, options)
+    end
+
+    def repository(url)
+      @repositories << url
     end
 
     def install!(update)

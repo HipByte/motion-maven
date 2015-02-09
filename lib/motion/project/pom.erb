@@ -21,6 +21,21 @@
       </dependency>
     <% end %>
   </dependencies>
+
+  <repositories>
+    <% @repositories.each_with_index do |repository, index| %>
+      <repository>
+        <id>repository-<%= index %></id>
+        <url><%= repository %></url>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>false</enabled>
+        </snapshots>
+      </repository>
+    <% end %>
+  </repositories>
   <build>
     <plugins>
       <plugin>

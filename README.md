@@ -66,6 +66,18 @@ Motion::Project::App.setup do |app|
 end
 ```
 
+You can also add other repositories :
+
+```ruby
+Motion::Project::App.setup do |app|
+   # ...
+   app.maven do
+     repository 'https://bintray.com/bintray/jcenter'
+     dependency 'com.google.android', :artifact => 'support-v4'
+   end
+end
+```
+
 ## Tasks
 
 To tell motion-maven to download your dependencies, run the following rake
