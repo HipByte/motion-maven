@@ -48,68 +48,11 @@ module Motion::Project
 
     # Helpers
     def generate_pom
+      template_path = File.expand_path("../pom.erb", __FILE__)
+      template = ERB.new(File.new(template_path).read, nil, "%")
       File.open(pom_path, 'w') do |io|
-        xml ||= <<EOS
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.maventest</groupId>
-  <artifactId>dependencies</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0</version>
-  <name>dependencies</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-EOS
-
-        @dependencies.each do |dependency|
-          xml << <<EOS
-<dependency>
-  <groupId>#{dependency[:name]}</groupId>
-  <artifactId>#{dependency[:artifact]}</artifactId>
-  <version>#{dependency[:version]}</version>
-EOS
-
-          if dependency[:scope]
-            xml << "<scope>#{dependency[:scope]}</scope>"
-          end
-
-          if dependency[:type]
-            xml << "<type>#{dependency[:type]}</type>"
-          end
-
-          xml << <<EOS
-</dependency>
-EOS
-        end
-
-        xml << <<EOS
-  </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <finalName>${project.artifactId}</finalName>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-</project>
-EOS
-
-        io.puts xml
+        io.puts template.result(binding)
       end
-
       system "xmllint --output #{pom_path} --format #{pom_path}"
     end
 
