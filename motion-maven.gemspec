@@ -17,5 +17,5 @@ Gem::Specification.new do |spec|
   spec.email       = 'j.jaffeux@gmail.com'
   spec.homepage    = 'http://www.rubymotion.com'
   spec.license     = 'MIT'
-  spec.files       = Dir.glob('lib/**/*.rb') << 'README.md' << 'LICENSE'
+  spec.files       = Dir.glob('lib/**/*.{erb,rb}') << 'README.md' << 'LICENSE'
 end
