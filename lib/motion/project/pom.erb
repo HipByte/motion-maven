@@ -25,12 +25,12 @@
     <% @repositories.each_with_index do |repository, index| %>
       <repository>
         <id>repository-<%= index %></id>
-        <url><%= repository %></url>
+        <url><%= repository[:url] %></url>
         <releases>
-          <enabled>true</enabled>
+          <enabled><%= repository[:releases] %></enabled>
         </releases>
         <snapshots>
-          <enabled>true</enabled>
+          <enabled><%= repository[:snapshots] %></enabled>
         </snapshots>
       </repository>
     <% end %>

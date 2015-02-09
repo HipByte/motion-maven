@@ -73,10 +73,13 @@ Motion::Project::App.setup do |app|
    # ...
    app.maven do
      repository 'https://bintray.com/bintray/jcenter'
+     repository 'http://dl.bintray.com/austintaylor/maven'
      dependency 'com.google.android', :artifact => 'support-v4'
    end
 end
 ```
+
+    * Other options are: :snapshots (default:true), :releases (default:true)
 
 ## Tasks
 

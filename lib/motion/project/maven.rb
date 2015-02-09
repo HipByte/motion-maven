@@ -42,8 +42,8 @@ module Motion::Project
       @dependencies << normalized_dependency(name, options)
     end
 
-    def repository(url)
-      @repositories << url
+    def repository(url, options = {})
+      @repositories << normalized_repository(url, options)
     end
 
     def install!(update)
@@ -76,6 +76,14 @@ module Motion::Project
       else
         "#{@maven_path}"
       end
+    end
+
+    def normalized_repository(url, options)
+      {
+        url: url,
+        releases: options.fetch(:releases, true),
+        snapshots: options.fetch(:snapshots, true)
+      }
     end
 
     def normalized_dependency(name, options)
