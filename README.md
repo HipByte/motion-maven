@@ -37,22 +37,22 @@ gem 'motion-maven'
 
 2. Still in the `Rakefile`, set your dependencies
 
-   ```ruby
-   Motion::Project::App.setup do |app|
-      # ...
-      app.maven do
-        dependency 'com.mcxiaoke.volley', :artifact => 'library', :version => '1.0.10'
-        dependency 'commons-cli'
-        dependency 'ehcache', :version => '1.2.3'
-      end
-   end
-   ```
+  ```ruby
+  Motion::Project::App.setup do |app|
+    # ...
+    app.maven do
+      dependency 'com.mcxiaoke.volley', :artifact => 'library', :version => '1.0.10'
+      dependency 'commons-cli'
+      dependency 'ehcache', :version => '1.2.3'
+    end
+  end
+  ```
 
-   * Other options are: :scope, :type
+  * Other options are: :scope, :type
 
-   * :version will default to: LATEST
+  * :version will default to: LATEST
 
-   * :artifact will default to dependency name
+  * :artifact will default to dependency name
 
 
 ## Configuration
@@ -70,16 +70,16 @@ You can also add other repositories :
 
 ```ruby
 Motion::Project::App.setup do |app|
-   # ...
-   app.maven do
-     repository 'https://bintray.com/bintray/jcenter'
-     repository 'http://dl.bintray.com/austintaylor/maven'
-     dependency 'com.google.android', :artifact => 'support-v4'
-   end
+  # ...
+  app.maven do
+    repository 'https://bintray.com/bintray/jcenter'
+    repository 'http://dl.bintray.com/austintaylor/maven'
+    dependency 'com.google.android', :artifact => 'support-v4'
+  end
 end
 ```
 
-    * Other options are: :snapshots (default:true), :releases (default:true)
+  * Other options are: :snapshots (default:true), :releases (default:true)
 
 ## Tasks
 
