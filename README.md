@@ -1,3 +1,6 @@
+/!\ I will deprecate this gem in the near future : you should now use [motion-gradle](https://github.com/jjaffeux/motion-gradle)
+
+
 # motion-maven
 
 motion-maven allows RubyMotion projects to integrate with the
